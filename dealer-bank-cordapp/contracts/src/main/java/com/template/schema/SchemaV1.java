@@ -61,6 +61,9 @@ public class SchemaV1 extends MappedSchema {
             public boolean isAmountTransfer() {
                 return amountTransfer;
             }
+            
+            public String getDealerCompanyName(){
+                return dealerCompanyName;
 
             public UUID getLinearIdLoanReq() {
                 return linearIdLoanReq;

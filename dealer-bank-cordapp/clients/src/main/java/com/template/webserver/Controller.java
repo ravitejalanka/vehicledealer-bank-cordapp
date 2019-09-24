@@ -80,7 +80,7 @@ public class Controller {
         try {
             RequestBankFlow.RequestToBank requestBank = new RequestBankFlow.RequestToBank(otherParty, amount,dealerCompanyName);
             final SignedTransaction signedTx = proxy
-                    .startTrackedFlowDynamic(requestBank.getClass(), otherParty, amount)
+                    .startTrackedFlowDynamic(requestBank.getClass(), otherParty, amount,dealerCompanyName)
                     .getReturnValue()
                     .get();
 

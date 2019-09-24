@@ -34,9 +34,9 @@ This application shows how Dealer(Borrower), Banks can use corda DLT for Loan le
 
 | Node                  |    Port         |
 | --------------------- | --------------- | 
-| Maruthi Dealer         | localhost:10009 |
-| Hyundai Dealer                  | localhost:10012 |      
-| Bank  | localhost:10015 |   
+| Maruthi Dealer         | localhost:10055 |
+| Hyundai Dealer                  | localhost:10060 |      
+| Bank  | localhost:10050 |   
 
 
 

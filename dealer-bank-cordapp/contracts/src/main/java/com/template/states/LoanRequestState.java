@@ -69,6 +69,11 @@ public class LoanRequestState  implements LinearState, QueryableState {
         return dealerCompanyName;
     }
 
+    public boolean isAmountTransfer() { return amountTransfer; }
+
+    public UniqueIdentifier getLinearIdLoanReq() { return linearIdLoanReq; }
+
+
     @NotNull
     @Override
     public PersistentState generateMappedObject(@NotNull MappedSchema schema) {

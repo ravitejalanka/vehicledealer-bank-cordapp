@@ -62,12 +62,9 @@ public class SchemaV1 extends MappedSchema {
                 return amountTransfer;
             }
             
-            public String getDealerCompanyName(){
-                return dealerCompanyName;
+            public String getDealerCompanyName(){ return dealerCompanyName;}
 
-            public UUID getLinearIdLoanReq() {
-                return linearIdLoanReq;
-            }
+            public UUID getLinearIdLoanReq() { return linearIdLoanReq; }
 
         }
 }

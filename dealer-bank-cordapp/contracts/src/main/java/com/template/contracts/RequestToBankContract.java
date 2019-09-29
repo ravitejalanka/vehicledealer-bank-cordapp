@@ -17,7 +17,7 @@ import static net.corda.core.contracts.ContractsDSL.requireThat;
 public class RequestToBankContract implements Contract {
 
 
-    public static final String REQUEST_TO_BANK_CONTRACT_ID = RequestToBankContract.class.getEnclosingClass().getCanonicalName();
+    public static final String REQUEST_TO_BANK_CONTRACT_ID = "com.template.contracts.RequestToBankContract";
     @Override
     public void verify(@NotNull LedgerTransaction tx) throws IllegalArgumentException {
         if (tx != null && tx.getCommands().size() != 1) {

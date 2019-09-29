@@ -31,8 +31,8 @@ public class ResponseBankFlow {
         UniqueIdentifier linearIdLoanReqDataState = null;
 
 
-        public Initiator(Party otherParty, UniqueIdentifier linearIdLoanReqDataState) {
-            this.dealer = otherParty;
+        public Initiator(Party dealer, UniqueIdentifier linearIdLoanReqDataState) {
+            this.dealer = dealer;
             this.linearIdLoanReqDataState = linearIdLoanReqDataState;
         }
         private final ProgressTracker.Step BANK_RESPONSE = new ProgressTracker.Step("Sending response to Dealer Node from Bank");
@@ -65,6 +65,7 @@ public class ResponseBankFlow {
             return linearIdLoanReqDataState;
         }
         @Override
+        @Suspendable
         public SignedTransaction call() throws FlowException {
             final Party notary = getServiceHub().getNetworkMapCache().getNotaryIdentities().get(0);
             final Party bank = getOurIdentity();

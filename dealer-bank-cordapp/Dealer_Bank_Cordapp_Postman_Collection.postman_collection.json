@@ -1,0 +1,192 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Dealer_Bank_Cordapp_Postman_Collection",
+		"_postman_id": "05ecbcbf-146b-59fa-34b8-d7b5d36a21e1",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Bank API's",
+			"description": "",
+			"item": [
+				{
+					"name": "Bank_Details",
+					"request": {
+						"url": "localhost:10050/loan-transfer/me",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Bank Node LoanRequestStates",
+					"request": {
+						"url": "localhost:10050/loan-transfer/loanRequestStates",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Bank Node Loan Response For Maruthi Dealer",
+					"request": {
+						"url": "localhost:10050/loan-transfer/loan-response",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "party",
+									"value": "O=Maruthi, L=Hyderabad, C=IN",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "linearId",
+									"value": "\"Replace with specific Linear Id\"",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Bank Node Loan Response for Hyundai Dealer Node",
+					"request": {
+						"url": "localhost:10050/loan-transfer/loan-response",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "party",
+									"value": "O=Hyundai,L=Mumbai,C=IN",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "linearId",
+									"value": "\"Replace with specific Linear Id\"",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Maruthi Dealer Node APi's",
+			"description": "",
+			"item": [
+				{
+					"name": "Maruthi Dealer Loan Request",
+					"request": {
+						"url": "localhost:10055/loan-transfer/loan-request",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "party",
+									"value": "O=Bank,L=BANGALORE,C=IN",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "100000",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "dealerName",
+									"value": "Maruthi",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Maruthi Dealer Node Loan Request States",
+					"request": {
+						"url": "localhost:10055/loan-transfer/loanRequestStates",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hyundai Dealer Node Api's",
+			"description": "",
+			"item": [
+				{
+					"name": "Hyundai Dealer Node LoanRequestStates",
+					"request": {
+						"url": "localhost:10060/loan-transfer/loanRequestStates",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Hyundai Dealer Node Loan Request",
+					"request": {
+						"url": "localhost:10060/loan-transfer/loan-request",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "party",
+									"value": "O=Bank,L=BANGALORE,C=IN",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "100000",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "dealerName",
+									"value": "Hyundai",
+									"description": ""
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

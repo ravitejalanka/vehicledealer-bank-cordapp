@@ -23,12 +23,12 @@ This application shows how Dealer(Borrower), Banks can use corda DLT for Loan le
 * http://docs.corda.r3.com/sizing-and-performance.html 
 
 ## Instructions for setting up
-1. clone the repository https://github.com/shivanzo/Finance-Assignment-Final-Phase
+1. clone the repository https://github.com/ravitejalanka/vehicledealer-bank-cordapp
 2. To build on unix : ./gradlew deployNodes
 3. To build on windows : gradlew.bat deployNodes
 4. For running corDapp on unix ./runnodes --log-to-console --logging-level=DEBUG
-5. For running corDapp on windows runnodes.bat --log-to-console --logging-level=DEBUG
-6. Good to run in intellij
+5. For running corDapp on windows. Go to $project_dir\workflows\build\nodes runnodes.bat --log-to-console --logging-level=DEBUG
+
 
 ## Accessing over API endpoints 
 

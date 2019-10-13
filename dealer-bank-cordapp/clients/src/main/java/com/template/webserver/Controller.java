@@ -4,7 +4,10 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.template.flows.RequestBankFlow;
 import com.template.flows.ResponseBankFlow;
+import com.template.pojo.LoanRequest;
+import com.template.pojo.LoanResponse;
 import com.template.states.LoanRequestState;
+import net.corda.core.contracts.StateAndRef;
 import net.corda.core.contracts.UniqueIdentifier;
 import net.corda.core.identity.CordaX500Name;
 import net.corda.core.identity.Party;
@@ -13,12 +16,14 @@ import net.corda.core.transactions.SignedTransaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.print.attribute.standard.Media;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
@@ -42,23 +47,23 @@ public class Controller {
         this.myLegalName = proxy.nodeInfo().getLegalIdentities().get(0).getName();
     }
 
-    @GetMapping(value = "/me", produces = "application/json")
+    @GetMapping(value = "/me", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, CordaX500Name> whoami() {
         return ImmutableMap.of("me", myLegalName);
     }
 
-    @GetMapping(value = "/loanRequestStates", produces = "application/json")
-    public ResponseEntity getLoanRequestStates() {
+    @GetMapping(value = "/loanRequestStates", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<StateAndRef<LoanRequestState>>> getLoanRequestStates() {
         System.out.println("VaultQuery : " + proxy.vaultQuery(LoanRequestState.class).getStates());
-        return ResponseEntity.status(200).body(proxy.vaultQuery(LoanRequestState.class).getStates());
+        return ResponseEntity.ok(proxy.vaultQuery(LoanRequestState.class).getStates());
     }
 
-    @PostMapping(value = "/loan-request", produces = "application/json")
-    public ResponseEntity loanRequest(HttpServletRequest request) {
+    @PostMapping(value = "/loan-request", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity loanRequest(LoanRequest loanRequest) {
 
-        String bank = request.getParameter("party");
-        int amount = Integer.valueOf(request.getParameter("amount"));
-        String dealerCompanyName = request.getParameter("dealerName");
+        String bank = loanRequest.getParty();
+        int amount = Integer.valueOf(loanRequest.getAmount());
+        String dealerCompanyName = loanRequest.getDealerName();
         CordaX500Name bankParty = CordaX500Name.parse(bank);
         final Party otherParty = proxy.wellKnownPartyFromX500Name(bankParty);
 
@@ -94,11 +99,11 @@ public class Controller {
     }
 
 
-    @PostMapping(value = "/loan-response", produces = "application/json")
-    public ResponseEntity loanResponse(HttpServletRequest request) {
-        String dealer = request.getParameter("party");
+    @PostMapping(value = "/loan-response", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity loanResponse(LoanResponse loanResponse) {
+        String dealer = loanResponse.getParty();
         CordaX500Name partyName = CordaX500Name.parse(dealer);
-        String loanRequestLinearId = request.getParameter("loanRequestId");
+        String loanRequestLinearId = loanResponse.getLinearId();
         final Party otherParty = proxy.wellKnownPartyFromX500Name(partyName);
 
         if (partyName == null) {

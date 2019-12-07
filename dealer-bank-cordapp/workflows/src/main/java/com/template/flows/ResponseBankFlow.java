@@ -76,7 +76,7 @@ public class ResponseBankFlow {
 
 
             QueryCriteria criteriaForBankVault = new QueryCriteria.LinearStateQueryCriteria(
-                    null,
+                    ImmutableList.of(getOurIdentity(), dealer),
                     ImmutableList.of(linearIdLoanReqDataState),
                     Vault.StateStatus.UNCONSUMED,
                     null);
